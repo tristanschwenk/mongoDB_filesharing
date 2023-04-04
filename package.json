@@ -1,0 +1,16 @@
+{
+  "name": "strategin-test",
+  "version": "1.0.0",
+  "description": "Project demo for job appliance",
+  "main": "index.js",
+  "author": "Tristan",
+  "license": "MIT",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.12"
+  }
+}

@@ -5,8 +5,8 @@ const ALLOWED_MIMETYPE = ['image/png', 'image/jpeg'];
 
 export const fileController = {
     findAll: async (req: Request, res: Response) => {
-        const books = await fileService.findAll()
-        return res.status(200).json(books)
+        const files = await fileService.findAll()
+        return res.status(200).json(files)
     },
 
     getFile: async (req: Request, res: Response) => {

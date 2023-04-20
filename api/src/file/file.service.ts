@@ -33,6 +33,7 @@ class FileService {
     // TODO check mimetype is present
     const fileName = `${uuidv4()}.${mime.extension(file.mimetype)}`;
 
+
     return new Promise<string>((resolve, reject) => {
       const options = {
         metadata,
@@ -40,7 +41,14 @@ class FileService {
       };
       const uploadStream = this.getBucket().openUploadStream(fileName, options);
 
-      uploadStream.on('finish', () => resolve(fileName));
+      uploadStream.on('finish', async () => {
+        const newFile = await File.insertMany([{
+          title: fileName,
+          mimetype: file.mimetype,
+          size: file.size,
+        }])
+        resolve(fileName)
+      });
       uploadStream.on('error', reject);
 
       uploadStream.write(file.buffer);
@@ -54,6 +62,8 @@ class FileService {
     for (const file of files) {
       this.getBucket().delete(file._id);
     }
+
+    await File.findOneAndDelete({title: name})
     return files.length;
   }
 

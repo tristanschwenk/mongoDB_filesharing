@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import mongoose, { Schema } from "mongoose";
 
 export const File = mongoose.model("File", new Schema({
@@ -6,6 +7,7 @@ export const File = mongoose.model("File", new Schema({
         type: Date,
         default: new Date()
     },
-    type: String
+    mimetype: String,
+    size: String,
 }))
 
